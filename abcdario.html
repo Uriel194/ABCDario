@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABCDARIO</title>
+    <link rel="shortcut icon" href="assets/img/icono.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link async href="http://fonts.googleapis.com/css?family=VT323" data-generated="http://enjoycss.com" rel="stylesheet" type="text/css"/>
+<link async href="http://fonts.googleapis.com/css?family=Warnes" data-generated="http://enjoycss.com" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div class="row">
+              <div class="col bg-primary rounded-top">
+                <div id="titulo">
+                  <center>
+                    <h1 class="enjoy-css"><b>APRENDE CON ABCDARIO</b></h1>
+                  </center>
+                </div>
+              </div>
+              <div class="w-100"></div>
+              <!--Login-->
+              <div class="col bg-light rounded" id="formulario">
+                <center>
+                    <div style="height: 10px;"></div>
+                    <div class="login shadow">
+                        <form class="form-signin">
+                            <img class="mb-4" src="assets/img/estudiante.png" alt="" width="120" height="120">
+                            <input type="text" id="nick" class="form-control" placeholder="Nombre de usuario" required="" autofocus="">
+                            <div style="height: 20px;"></div>
+                            <button class="btn btn-lg btn-primary btn-block" type="button" onclick="comenzar();">Continuar</button>
+                        </form>
+                    </div>
+                    <div style="height: 10px;"></div>
+                </center>
+              </div>
+              <!--Fin login-->
+              <!-- <audio id="sonido" preload="auto">
+                <source src="assets/sound/pop.mp3"></source>
+              </audio> -->
+              <!--Juego-->
+              <div class="col bg-light rounded" id="juego_go" style="display: none;">
+                <center>
+                    <div style="height: 10px;"></div>
+                    <div class="juego shadow">
+                      <div class="container">
+                        <div class="row row-cols-3">
+                          <div class="col"></div>
+                          <div class="col"><b><h4 class="text-dark" id="nombre"></h4></b><h4 class="text-dark"> selecciona la imagen que comienza con la letra</h4><h3 class="text-dark" id="letra"></h3></div>
+                          <div class="col"></div>
+                          <div class="col">
+                            <button type="button" class="btn btn-outline-info" id="boton1" value="" onclick="validar();">
+                              <img src="" alt="" class="objeto" id="img1">
+                            </button>
+                          </div>
+                          <div class="col">
+                            <button type="button" class="btn btn-outline-info" id="boton2" value="" onclick="validar2();">
+                              <img src="" alt="" class="objeto" id="img2">
+                            </button>
+                            <br>
+                            
+                          </div>
+                          <div class="col">
+                            <button type="button" class="btn btn-outline-info" id="boton3" value="" onclick="validar3();">
+                              <img src="" alt="" class="objeto" id="img3">
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <center>
+                        <button type="button" class="btn btn-outline-info" id="siguiente" type="button" onclick="siguiente();">
+                          SIGUIENTE
+                        </button> 
+                        <div class="alert alert-info" role="alert" id="resultado" style="display: none;">
+                          <h4>Aciertos:</h4><b><h4 id="calificacion">0</h4>
+                          <br>
+                          <h4>Letras: 26</h4></b>
+                        </div>
+                        <br>
+                        <button type="button" class="btn btn-info" id="btn_finalizar" style="display: none;" type="button" onclick="cal();">
+                          Finalizar
+                        </button>
+
+                        <button type="button" class="btn btn-info" id="btn_actualizar" style="display: none;" type="button" onclick="actualizar();">
+                          Reintentar
+                        </button>
+                      </center>
+                    </div>
+                    <div style="height: 10px;"></div>
+                </center>
+              </div>
+              <!--Fin juego-->
+              <div class="w-100"></div>
+              <div class="col bg-primary rounded-bottom shadow">
+                <center>
+                    <span class="parpadea text"  id="tag_inicio"><strong>Presiona Continuar para finalizar!</strong></span>
+                    <span class="parpadea text" style="display: none;" id="tag_final"><strong>Selecciona la imagen correcta.</strong></span>
+                </center>
+              </div>
+            </div>
+          </div>
+    </main>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script>
+      var num_letra;
+      var letra;
+      let letras = ["A", "B", "C", "D", "E", "F",
+       "G", "H", "I", "J", "K", "L", "M", "N", "O",
+        "P", "Q", "R", "S", "T", "U", "V","W", "X", "Y", "Z"]
+      var imagen_sel;
+      var img_correcta;
+      var res_correctas = 0;
+  
+      let etiquetaAudio = document.createElement("audio");
+
+      function comenzar() {
+        num_letra = 0;
+        var nombre = document.getElementById("nick").value;
+        //va del 0 al 25
+        letra = letras[num_letra];
+        document.getElementById('formulario').style.display = 'none';
+        document.getElementById('juego_go').style.display = 'block';
+        
+        document.getElementById('tag_inicio').style.display = 'none';
+        document.getElementById('tag_final').style.display = 'block';
+        
+        document.getElementById("letra").innerHTML = letra;
+        document.getElementById("nombre").innerHTML = nombre;
+        document.getElementById("siguiente").disabled=true;
+
+        document.getElementById("boton1").value = letra;
+
+        document.getElementById("img1").src="assets/img/objetos/"+letra+".gif";
+        document.getElementById("img2").src="assets/img/objetos/"+letras[Math.round(Math.random()*25)]+".gif";
+        document.getElementById("img3").src="assets/img/objetos/"+letras[Math.round(Math.random()*25)]+".gif";
+        
+      }
+      function siguiente(){
+        img_correcta = Math.round(Math.random()*2);
+        etiquetaAudio.setAttribute("src", "assets/sound/click.mp3");
+        etiquetaAudio.play();
+        if (num_letra >= 25) {
+          document.getElementById("siguiente").disabled=true;
+          document.getElementById("siguiente").style.display = 'none';
+          document.getElementById('btn_finalizar').style.display = 'block';
+        } else {
+          document.getElementById("siguiente").disabled=true;
+
+          document.getElementById("boton1").disabled=false;
+          document.getElementById("boton2").disabled=false;
+          document.getElementById("boton3").disabled=false;
+          if (img_correcta == 0) {
+            num_letra = num_letra + 1;
+            letra = letras[num_letra];
+            document.getElementById("letra").innerHTML = letra;
+
+            document.getElementById("boton1").value = letra;
+
+            document.getElementById("img1").src="assets/img/objetos/"+letra+".gif";
+            document.getElementById("img2").src="assets/img/objetos/"+letras[Math.round(Math.random()*25)]+".gif";
+            document.getElementById("img3").src="assets/img/objetos/"+letras[Math.round(Math.random()*25)]+".gif";
+          } else if(img_correcta == 1) {
+            num_letra = num_letra + 1;
+            letra = letras[num_letra];
+            document.getElementById("letra").innerHTML = letra;
+
+            document.getElementById("boton2").value = letra;
+
+            document.getElementById("img1").src="assets/img/objetos/"+letras[Math.round(Math.random()*25)]+".gif";
+            document.getElementById("img2").src="assets/img/objetos/"+letra+".gif";
+            document.getElementById("img3").src="assets/img/objetos/"+letras[Math.round(Math.random()*25)]+".gif";
+          } else if(img_correcta == 2){
+            num_letra = num_letra + 1;
+            letra = letras[num_letra];
+            document.getElementById("letra").innerHTML = letra;
+
+            document.getElementById("boton3").value = letra;
+
+            document.getElementById("img1").src="assets/img/objetos/"+letras[Math.round(Math.random()*25)]+".gif";
+            document.getElementById("img2").src="assets/img/objetos/"+letras[Math.round(Math.random()*25)]+".gif";
+            document.getElementById("img3").src="assets/img/objetos/"+letra+".gif";
+          }
+        }
+      }
+      function validar(){
+        var valor =  document.getElementById("boton1").value;
+        if (valor == letra) {
+            res_correctas = res_correctas +1;
+            //sonidooo
+            etiquetaAudio.setAttribute("src", "");
+            etiquetaAudio.play();
+        } else {
+          
+        }
+        document.getElementById("boton1").disabled=true;
+        document.getElementById("boton2").disabled=true;
+        document.getElementById("boton3").disabled=true;
+
+        document.getElementById("siguiente").disabled=false;
+      }
+      function validar2(){
+        var valor =  document.getElementById("boton2").value;
+        if (valor == letra) {
+            res_correctas = res_correctas +1;
+            //sonidooo
+            etiquetaAudio.setAttribute("src", "");
+            etiquetaAudio.play();
+        } else {
+          
+        }
+        document.getElementById("boton1").disabled=true;
+        document.getElementById("boton2").disabled=true;
+        document.getElementById("boton3").disabled=true;
+
+        document.getElementById("siguiente").disabled=false;
+      }
+      function validar3(){
+        var valor =  document.getElementById("boton3").value;
+        if (valor == letra) {
+            res_correctas = res_correctas +1;
+            //sonidooo
+            etiquetaAudio.setAttribute("src", "");
+            etiquetaAudio.play();
+        } else {
+          
+        }
+        document.getElementById("boton1").disabled=true;
+        document.getElementById("boton2").disabled=true;
+        document.getElementById("boton3").disabled=true;
+
+        document.getElementById("siguiente").disabled=false;
+      }
+      function cal (){
+        console.log("Calificacion: "+res_correctas + "/"+26);
+        document.getElementById("calificacion").innerHTML = res_correctas;
+        document.getElementById('resultado').style.display = 'block';
+        document.getElementById('btn_actualizar').style.display = 'block';
+        document.getElementById('btn_finalizar').style.display = 'none';
+
+        let victoria = document.createElement("audio");
+        victoria.setAttribute("src", "assets/sound/vic.mp3");
+        victoria.play();
+      }
+      function actualizar() {
+        location.reload();
+      }
+    </script>
+</body>
+</html>

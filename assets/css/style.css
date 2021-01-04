@@ -1,0 +1,110 @@
+body{
+    box-sizing: content-box;
+    border: none;
+    font: normal 0.5px/normal Arial, Helvetica, sans-serif;
+    color: rgba(255,255,255,1);
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    background: -webkit-linear-gradient(135deg, rgba(0,0,0,0) 25%, rgba(255,255,255,0.2) 25%, rgba(255,255,255,0.2) 50%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 75%, rgba(255,255,255,0.2) 75%), -webkit-linear-gradient(45deg, rgba(0,0,0,0) 25%, rgba(255,255,255,0.2) 25%, rgba(255,255,255,0.2) 50%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 75%, rgba(255,255,255,0.2) 75%), rgb(0, 153, 151);
+    background: -moz-linear-gradient(-45deg, rgba(0,0,0,0) 25%, rgba(255,255,255,0.2) 25%, rgba(255,255,255,0.2) 50%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 75%, rgba(255,255,255,0.2) 75%), -moz-linear-gradient(45deg, rgba(0,0,0,0) 25%, rgba(255,255,255,0.2) 25%, rgba(255,255,255,0.2) 50%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 75%, rgba(255,255,255,0.2) 75%), rgb(0, 153, 151);
+    background: linear-gradient(-45deg, rgba(0,0,0,0) 25%, rgba(255,255,255,0.2) 25%, rgba(255,255,255,0.2) 50%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 75%, rgba(255,255,255,0.2) 75%), linear-gradient(45deg, rgba(0,0,0,0) 25%, rgba(255,255,255,0.2) 25%, rgba(255,255,255,0.2) 50%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 75%, rgba(255,255,255,0.2) 75%), rgb(0, 153, 151);
+    background-position: auto auto;
+    background-origin: padding-box;
+    background-clip: border-box;
+    -webkit-background-size: 200em 200em;
+ 
+}
+#icono_portada{
+    width: 30%;
+    height: 30%;
+}
+/*BOTON PLAY*/
+#boton_play {
+    width: 80px;
+    height: 80px;
+    padding: 10px;
+    background-image: url(../img/play.png);
+    background-size: contain;
+}
+#boton_play:hover{
+    width: 80px;
+    height: 80px;
+    padding: 10px;
+    background-image: url(../img/play_1.png);
+    background-size: contain;
+}
+/*FIN BOTON PLAY*/
+.container{
+    padding: 60px;
+}
+/*Texto en 8 bits*/
+.enjoy-css {
+    display: inline-block;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    padding: 10px;
+    overflow: hidden;
+    border: none;
+    font: normal 70px/1 "VT323", Helvetica, sans-serif;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    text-shadow: 5px 5px 0 rgb(0, 20, 134) ;
+  }
+/*Fin de texto 8 bits*/
+/*TEXTO PARPADEANTE*/
+.text {
+    font-size:28px;
+    font-family:helvetica;
+    font-weight:bold;
+    color:#ffffff;
+    text-transform:uppercase;
+}
+.parpadea {
+    animation-name: parpadeo;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  
+    -webkit-animation-name:parpadeo;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+}
+  
+@-moz-keyframes parpadeo{  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+  
+@-webkit-keyframes parpadeo {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+  
+@keyframes parpadeo {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+  /*Fin de texto parpadeante*/
+  /*Login*/
+.login{
+    width: 350px;
+     padding: 10px;
+} 
+/*Fin login*/
+/*Juego*/
+.juego{
+    width: 1000px;
+     padding: 10px;
+}
+.objeto{
+    width: 150px;
+    height: 150px;
+}
+/*Fin juego*/
